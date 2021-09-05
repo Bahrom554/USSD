@@ -17,8 +17,8 @@ class CategoryController extends Controller
     public function index()
     {
         $company= session('company');
-       $categories=Category::where('company',$company)->get();
-       return view('categories.show',compact('categories'));
+        $categories=Category::where('company',$company)->get();
+        return view('categories.show',compact('categories'));
     }
 
     /**
@@ -48,10 +48,10 @@ class CategoryController extends Controller
             throw new \InvalidArgumentException('Undefined role "' . $request->type . '"');
         }
         $category = new Category;
-            $category->name = $request->name;
-            $category->type = $request->type;
-            $category->company= session('company',Category::UCELL);
-            $category->save();
+        $category->name = $request->name;
+        $category->type = $request->type;
+        $category->company= session('company',Category::UCELL);
+        $category->save();
 
         return redirect(route('categories.index'));
 
@@ -76,9 +76,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-         $category=Category::find($id);
+        $category=Category::find($id);
         $types = Category::typesList();
-         return view('categories.edit',compact('category','types'));
+        return view('categories.edit',compact('category','types'));
     }
 
     /**
